@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Title Tags and Meta Descriptions from Q6.1 -->
+    <title id="page-title">Yatra Local | Curated Weekend Experiential Travel Maharashtra</title>
+    <meta name="description" id="page-meta" content="Discover authentic weekend getaways across Maharashtra with Yatra Local. Explore historic hill forts, peaceful farm stays, Nashik vineyards, and heritage walks.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- GA4 Configuration & Live Debug Bar (Required for Stage 8.4) -->
+    <div class="bg-stone-900 text-stone-200 text-xs py-2 px-4 flex flex-wrap justify-between items-center border-b border-stone-800 z-50">
+        <div class="flex items-center space-x-2 my-1">
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="font-semibold text-emerald-400">GA4 Live Monitor:</span>
+            <span id="ga4-status" class="text-stone-400">Not Connected (Using Mock Stream)</span>
+        </div>
+        <div class="flex items-center space-x-2 my-1">
+            <label for="ga-id-input" class="text-stone-400">GA4 Measurement ID:</label>
+            <input type="text" id="ga-id-input" placeholder="G-XXXXXXXXXX" class="bg-stone-800 text-stone-100 px-2 py-1 rounded text-xs border border-stone-700 focus:outline-none focus:border-amber-500">
+            <button onclick="initializeGA4()" class="bg-amber-600 hover:bg-amber-500 text-white px-3 py-1 rounded font-medium transition">Connect</button>
+        </div>
+    </div>
+
+    <!-- Academic Project Notice Bar (Required by Non-Negotiable Rule) -->
+    <div class="bg-amber-100 text-amber-900 text-center text-xs py-1.5 px-4 font-medium border-b border-amber-200">
+        Academic project created by students of IMDR, Pune. This is not a commercial business and nothing is actually sold.
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 bg-white/95 backdrop-blur-md shadow-sm z-40 border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchPage('home')">
+                <div class="w-10 h-10 rounded-xl bg-amber-700 flex items-center justify-center text-white font-bold text-xl shadow-md">YL</div>
+                <div>
+                    <span class="text-xl font-black tracking-tight text-stone-900">YATRA LOCAL</span>
+                    <span class="block text-[10px] tracking-widest uppercase text-amber-700 font-semibold">Maharashtra Experiences</span>
+                </div>
+            </div>
+            <nav class="hidden md:flex space-x-8 font-medium text-sm">
+                <button onclick="switchPage('home')" id="nav-home" class="text-amber-700 font-semibold transition hover:text-amber-700">Home</button>
+                <button onclick="switchPage('offering')" id="nav-offering" class="text-stone-600 transition hover:text-amber-700">Offering</button>
+                <button onclick="switchPage('contact')" id="nav-contact" class="text-stone-600 transition hover:text-amber-700">Contact</button>
+                <button onclick="switchPage('privacy')" id="nav-privacy" class="text-stone-600 transition hover:text-amber-700">Privacy Policy</button>
+            </nav>
+            <div>
+                <button onclick="switchPage('contact')" class="bg-amber-700 hover:bg-amber-800 text-white px-5 py-2.5 rounded-xl font-medium text-sm shadow-sm transition transform hover:-translate-y-0.5">
+                    Plan Weekend Getaway
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow">
+
+        <!-- ================= PAGE 1: HOME ================= -->
+        <div id="page-home" class="page-content">
+            <!-- Hero Section with Background Image Directly Behind Title -->
+            <section class="relative bg-stone-900 text-white py-36 lg:py-48 overflow-hidden">
+                <!-- Background Image Layer -->
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1629814403164-9642ec070773?auto=format&fit=crop&q=80&w=1920" alt="Maharashtra Fort Sahyadri Hills" class="w-full h-full object-cover scale-105">
+                </div>
+                <!-- Dark Overlay for High Text Readability -->
+                <div class="absolute inset-0 bg-gradient-to-r from-stone-950/95 via-stone-950/80 to-stone-950/40 z-10"></div>
+                
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
+                    <div class="max-w-3xl">
+                        <span class="inline-block bg-amber-600 text-white text-xs px-3.5 py-1.5 rounded-full uppercase tracking-widest font-semibold mb-6 shadow">Curated Weekend Trails</span>
+                        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-6 leading-tight drop-shadow-lg">
+                            Unearth Maharashtra Beyond the Ordinary.
+                        </h1>
+                        <p class="text-lg sm:text-xl text-stone-200 mb-10 leading-relaxed font-light">
+                            Curated weekend experiential travel around historic forts, farm stays, and heritage walks.
+                        </p>
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-5">
+                            <button onclick="switchPage('offering'); trackCustomEvent('explore_offerings_click');" class="bg-amber-600 hover:bg-amber-500 text-white font-semibold px-8 py-4 rounded-xl shadow-xl transition text-center transform hover:-translate-y-0.5">
+                                Explore Experiences
+                            </button>
+                            <button onclick="switchPage('contact'); trackCustomEvent('cta_get_in_touch');" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 font-semibold px-8 py-4 rounded-xl transition text-center">
+                                Get in Touch
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Value Propositions / Highlights -->
+            <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl font-bold text-stone-900 mb-4">Why Travel With Yatra Local?</h2>
+                    <p class="text-stone-600">We replace overcrowded commercial tours with deeply authentic, sustainable weekend immersions crafted by local experts.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200 hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center font-bold text-xl mb-6">01</div>
+                        <h3 class="text-xl font-bold mb-3 text-stone-900">Sahyadri Fort Treks</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">Sunrise climbs and night treks to historic Maratha hill forts led by certified local mountaineers and historians.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200 hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center font-bold text-xl mb-6">02</div>
+                        <h3 class="text-xl font-bold mb-3 text-stone-900">Authentic Farm Stays</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">Unplug in rural Konkan and Western Ghats. Organic farm-to-table meals, traditional mud-house stays, and village crafts.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200 hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center font-bold text-xl mb-6">03</div>
+                        <h3 class="text-xl font-bold mb-3 text-stone-900">Vineyards & Heritage</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">Exclusive vineyard tours in Nashik with sommelier-led tastings and guided heritage walks through ancient Wada towns.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE 2: OFFERING ================= -->
+        <div id="page-offering" class="page-content hidden">
+            <section class="bg-stone-900 text-white py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h1 class="text-4xl font-extrabold mb-4">Our Curated Weekend Offerings</h1>
+                    <p class="text-stone-300 max-w-2xl mx-auto">Seasonal demand experiential getaways departing every Friday evening from Pune and Mumbai.</p>
+                </div>
+            </section>
+
+            <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Offering 1 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200 flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&q=80&w=600" alt="Fort Trek" class="h-48 w-full object-cover">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <span class="text-xs font-semibold text-amber-700 uppercase tracking-wider mb-2">High Season (Monsoon/Winter)</span>
+                            <h3 class="text-xl font-bold mb-2">Sahyadri Fort Expedition</h3>
+                            <p class="text-stone-600 text-sm mb-6 flex-grow">2 Days / 1 Night guided trek to Harishchandragad or Rajgad with camping gear and meals included.</p>
+                            <div class="flex items-center justify-between pt-4 border-t border-stone-100">
+                                <span class="text-lg font-black text-stone-900">Rs. 3,499 <span class="text-xs font-normal text-stone-500">/ person</span></span>
+                                <button onclick="switchPage('contact'); trackCustomEvent('select_offering_fort');" class="bg-amber-700 text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-amber-800 transition">Book Slot</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Offering 2 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200 flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=600" alt="Farm Stay" class="h-48 w-full object-cover">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <span class="text-xs font-semibold text-emerald-700 uppercase tracking-wider mb-2">All Year Round</span>
+                            <h3 class="text-xl font-bold mb-2">Konkan Agro Farm Stay</h3>
+                            <p class="text-stone-600 text-sm mb-6 flex-grow">Relax in a family-run mango orchard. Includes traditional Malvani meals, bullock cart rides, and pottery workshops.</p>
+                            <div class="flex items-center justify-between pt-4 border-t border-stone-100">
+                                <span class="text-lg font-black text-stone-900">Rs. 4,299 <span class="text-xs font-normal text-stone-500">/ person</span></span>
+                                <button onclick="switchPage('contact'); trackCustomEvent('select_offering_farm');" class="bg-amber-700 text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-amber-800 transition">Book Slot</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Offering 3 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200 flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&q=80&w=600" alt="Vineyard" class="h-48 w-full object-cover">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <span class="text-xs font-semibold text-amber-700 uppercase tracking-wider mb-2">Seasonal Harvest</span>
+                            <h3 class="text-xl font-bold mb-2">Nashik Vineyard & Wine Trail</h3>
+                            <p class="text-stone-600 text-sm mb-6 flex-grow">Exclusive estate tours, grape stomping experience, sommelier masterclass, and boutique luxury stay.</p>
+                            <div class="flex items-center justify-between pt-4 border-t border-stone-100">
+                                <span class="text-lg font-black text-stone-900">Rs. 5,999 <span class="text-xs font-normal text-stone-500">/ person</span></span>
+                                <button onclick="switchPage('contact'); trackCustomEvent('select_offering_vineyard');" class="bg-amber-700 text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-amber-800 transition">Book Slot</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Offering 4 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200 flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&q=80&w=600" alt="Heritage Walk" class="h-48 w-full object-cover">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <span class="text-xs font-semibold text-emerald-700 uppercase tracking-wider mb-2">Weekend Special</span>
+                            <h3 class="text-xl font-bold mb-2">Wada & Textile Heritage Walk</h3>
+                            <p class="text-stone-600 text-sm mb-6 flex-grow">Guided exploration of Peshwa-era architecture, traditional handloom weavers, and authentic local culinary tasting.</p>
+                            <div class="flex items-center justify-between pt-4 border-t border-stone-100">
+                                <span class="text-lg font-black text-stone-900">Rs. 1,899 <span class="text-xs font-normal text-stone-500">/ person</span></span>
+                                <button onclick="switchPage('contact'); trackCustomEvent('select_offering_heritage');" class="bg-amber-700 text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-amber-800 transition">Book Slot</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE 3: CONTACT US ================= -->
+        <div id="page-contact" class="page-content hidden">
+            <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <span class="text-amber-700 font-semibold text-sm uppercase tracking-wider">Get In Touch</span>
+                        <h1 class="text-4xl font-extrabold text-stone-900 mt-2 mb-6">Plan Your Next Maharashtra Escape</h1>
+                        <p class="text-stone-600 mb-8 leading-relaxed">
+                            Have questions about our seasonal weekend itineraries, group customisations, or transport departures from Pune and Mumbai? Drop us a message and our experience curator will respond within 4 business hours.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold">📍</div>
+                                <div>
+                                    <h4 class="font-bold text-stone-900">Base Camp Office</h4>
+                                    <p class="text-stone-600 text-sm">FC Road, Shivajinagar, Pune, Maharashtra 411004</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold">📞</div>
+                                <div>
+                                    <h4 class="font-bold text-stone-900">WhatsApp Concierge</h4>
+                                    <p class="text-stone-600 text-sm">+91 7350976172 (Mon-Sat, 9am - 7pm)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-stone-200">
+                        <form id="contact-form" onsubmit="handleFormSubmit(event)">
+                            <div class="mb-5">
+                                <label class="block text-sm font-semibold text-stone-700 mb-2">Full Name</label>
+                                <input type="text" id="form-name" required class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-amber-700 focus:outline-none text-sm" placeholder="e.g. Rohan Joshi">
+                            </div>
+                            <div class="mb-5">
+                                <label class="block text-sm font-semibold text-stone-700 mb-2">Email Address</label>
+                                <input type="email" id="form-email" required class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-amber-700 focus:outline-none text-sm" placeholder="rohan@example.com">
+                            </div>
+                            <div class="mb-5">
+                                <label class="block text-sm font-semibold text-stone-700 mb-2">Interested Experience</label>
+                                <select id="form-interest" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-amber-700 focus:outline-none text-sm bg-white">
+                                    <option>Sahyadri Fort Expedition</option>
+                                    <option>Konkan Agro Farm Stay</option>
+                                    <option>Nashik Vineyard & Wine Trail</option>
+                                    <option>Wada & Textile Heritage Walk</option>
+                                </select>
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-sm font-semibold text-stone-700 mb-2">Message or Custom Request</label>
+                                <textarea id="form-message" rows="4" required class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-amber-700 focus:outline-none text-sm" placeholder="Tell us your preferred dates..."></textarea>
+                            </div>
+                            <!-- DPDP Act 2023 Consent Line -->
+                            <div class="mb-6 flex items-start space-x-2">
+                                <input type="checkbox" id="form-consent" required class="mt-1">
+                                <label for="form-consent" class="text-xs text-stone-500">I consent to Yatra Local processing my contact details in accordance with the Privacy Policy to respond to this travel enquiry.</label>
+                            </div>
+                            <button type="submit" class="w-full bg-amber-700 hover:bg-amber-800 text-white font-medium py-3.5 rounded-xl shadow transition">
+                                Submit Travel Enquiry
+                            </button>
+                        </form>
+                        <div id="form-success" class="hidden mt-4 p-4 bg-emerald-50 text-emerald-800 rounded-xl text-center text-sm font-medium">
+                            Thank you! Your inquiry has been received. Our concierge will contact you shortly.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE 4: PRIVACY POLICY ================= -->
+        <div id="page-privacy" class="page-content hidden">
+            <section class="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-3xl font-extrabold text-stone-900 mb-6">Privacy Policy & Data Protection</h1>
+                <p class="text-sm text-stone-500 mb-8">Last updated: October 2026 | Compliant with DPDP Act 2023</p>
+                
+                <div class="space-y-6 text-stone-700 text-sm leading-relaxed">
+                    <div class="bg-white p-6 rounded-2xl border border-stone-200">
+                        <h3 class="font-bold text-stone-900 text-base mb-2">1. Data Minimisation & Collection</h3>
+                        <p>In accordance with the Digital Personal Data Protection (DPDP) Act 2023, Yatra Local collects only necessary personal data (Name, Email, Phone Number) explicitly provided via our booking/contact forms for travel coordination.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-stone-200">
+                        <h3 class="font-bold text-stone-900 text-base mb-2">2. Purpose & Retention</h3>
+                        <p>Your data is used strictly for communicating itinerary updates, safety guidelines, and booking confirmations. Data is securely retained for a maximum duration of 12 months post-travel, after which it is permanently purged.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-stone-200">
+                        <h3 class="font-bold text-stone-900 text-base mb-2">3. User Rights & Deletion</h3>
+                        <p>You hold the right to request access, correction, or immediate deletion of your personal records at any time by contacting our privacy officer at privacy@yatralocal.in.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 py-12 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0 text-center md:text-left">
+                <span class="text-white font-bold text-lg">Yatra Local</span>
+                <p class="text-xs text-stone-500 mt-1">Curated weekend experiential travel around Maharashtra.</p>
+                <p class="text-xs text-stone-300 mt-1">Helpline / WhatsApp: +91 7350976172</p>
+                <p class="text-[11px] text-amber-500/90 mt-2">Academic project created by students of IMDR, Pune.</p>
+            </div>
+            <div class="flex space-x-6 text-sm">
+                <button onclick="switchPage('home')" class="hover:text-white transition">Home</button>
+                <button onclick="switchPage('offering')" class="hover:text-white transition">Offering</button>
+                <button onclick="switchPage('contact')" class="hover:text-white transition">Contact</button>
+                <button onclick="switchPage('privacy')" class="hover:text-white transition">Privacy Policy</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GA4 and SPA Navigation Script -->
+    <script>
+        // Page Data for Dynamic Titles / Meta descriptions (Q6.1)
+        const pageMetaMap = {
+            home: {
+                title: "Yatra Local | Curated Weekend Experiential Travel Maharashtra",
+                desc: "Discover authentic weekend getaways across Maharashtra with Yatra Local. Explore historic hill forts, peaceful farm stays, Nashik vineyards, and heritage walks."
+            },
+            offering: {
+                title: "Offerings & Itineraries | Yatra Local Maharashtra",
+                desc: "Browse our seasonal weekend experiential tours: Sahyadri fort treks, Konkan agro farm stays, Nashik wine trails, and Pune heritage walks."
+            },
+            contact: {
+                title: "Contact & Book Getaways | Yatra Local",
+                desc: "Get in touch with Yatra Local to plan your next weekend experiential travel in Maharashtra. Book slots or request custom group tours."
+            },
+            privacy: {
+                title: "Privacy Policy | Yatra Local DPDP Compliance",
+                desc: "Read Yatra Local's privacy policy and data protection practices under the DPDP Act 2023."
+            }
+        };
+
+        let currentGaId = null;
+
+        function switchPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(el => el.classList.add('hidden'));
+            // Show requested page
+            document.getElementById('page-' + pageId).classList.remove('hidden');
+            
+            // Update active nav styling
+            ['home', 'offering', 'contact', 'privacy'].forEach(p => {
+                const navBtn = document.getElementById('nav-' + p);
+                if (navBtn) {
+                    if (p === pageId) {
+                        navBtn.className = "text-amber-700 font-semibold transition";
+                    } else {
+                        navBtn.className = "text-stone-600 transition hover:text-amber-700";
+                    }
+                }
+            });
+
+            // Update Title and Meta
+            if(pageMetaMap[pageId]) {
+                document.getElementById('page-title').innerText = pageMetaMap[pageId].title;
+                document.getElementById('page-meta').setAttribute('content', pageMetaMap[pageId].desc);
+            }
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Trigger virtual GA4 page_view
+            trackPageview(pageId);
+        }
+
+        function initializeGA4() {
+            const inputVal = document.getElementById('ga-id-input').value.trim();
+            if(inputVal.startsWith('G-')) {
+                currentGaId = inputVal;
+                document.getElementById('ga4-status').innerText = `Connected (${currentGaId})`;
+                document.getElementById('ga4-status').className = "text-emerald-400 font-bold";
+                alert("GA4 Measurement ID " + currentGaId + " successfully linked!");
+                
+                // Dynamically inject real gtag script if connected
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = `https://www.googletagmanager.com/gtag/js?id=${currentGaId}`;
+                document.head.appendChild(script);
+
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
+                gtag('js', new Date());
+                gtag('config', currentGaId);
+            } else {
+                alert("Please enter a valid GA4 Measurement ID starting with 'G-' (e.g. G-ABC123XYZ)");
+            }
+        }
+
+        function trackPageview(pageName) {
+            console.log(`[GA4 Tracking] page_view fired for: /${pageName}`);
+            if(window.gtag && currentGaId) {
+                gtag('event', 'page_view', {
+                    page_title: document.title,
+                    page_location: window.location.href,
+                    page_path: '/' + pageName
+                });
+            }
+        }
+
+        function trackCustomEvent(eventName, eventParams = {}) {
+            console.log(`[GA4 Tracking] Custom event fired: ${eventName}`, eventParams);
+            if(window.gtag && currentGaId) {
+                gtag('event', eventName, eventParams);
+            }
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            // Fire conversion event (Required by Stage 8.4)
+            trackCustomEvent('generate_lead', {
+                event_category: 'Lead',
+                event_label: document.getElementById('form-interest').value
+            });
+
+            document.getElementById('contact-form').reset();
+            document.getElementById('form-success').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('form-success').classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
